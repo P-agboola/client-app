@@ -7,6 +7,10 @@ export class AppService {
   constructor(@Inject('AUTH_SERVICE') private authClient: ClientProxy) {}
 
   async signup(authCrendetialsDto: AuthCredentialsDto) {
-    return await this.authClient.send('signUp', authCrendetialsDto);
+    return await this.authClient.send({ cmd: 'signUp' }, authCrendetialsDto);
+  }
+
+  async signin(authCrendetialsDto: AuthCredentialsDto) {
+    return await this.authClient.send({ cmd: 'signIn' }, authCrendetialsDto);
   }
 }
